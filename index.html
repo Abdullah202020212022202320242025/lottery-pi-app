@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Pi SDK</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sdk/pi-sdk.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lottery Pi SDK</h1>
+        <p id="balance">Balance: 0 Pi</p>
+        <button onclick="deposit()">Deposit</button>
+        <button onclick="withdraw()">Withdraw</button>
+        <p id="status"></p>
+    </header>
+
+    <main>
+        <section id="lottery">
+            <h2>Lottery Draw</h2>
+            <p>Draw at 12:00 UTC daily</p>
+            <div id="countdown"></div>
+            <button onclick="buyTicket()">Buy Ticket (1 Pi)</button>
+        </section>
+
+        <section id="transactions">
+            <h2>Transaction History</h2>
+            <ul id="transactionList"></ul>
+        </section>
+
+        <section id="updates">
+            <h2>News & Updates</h2>
+            <textarea id="newsPost" placeholder="Write update..."></textarea>
+            <button onclick="postNews()">Post</button>
+            <div id="newsFeed"></div>
+        </section>
+    </main>
+
+    <footer>
+        <button onclick="switchLanguage()">Switch Language</button>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
