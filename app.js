@@ -2,7 +2,7 @@
 
 // إعدادات Pi SDK
 const PI_API_KEY = "usuxvv3cscc3gevmnj9cvay7ue3hi032pnlg0tblims1coroivqyqervgy5mksmt";
-const RECEIVER_WALLET = "GCW4WBMEEPMPFKZL2NOUKDJXQCS2NOJPFDKZXXPHFUTXRQXXGSRSQ3WE"; // ← العنوان المحدث
+const RECEIVER_WALLET = "GCW4WBMEEPMPFKZL2NOUKDJXQCS2NOJPFDKZXXPHFUTXRQXXGSRSQ3WE"; // ← المحفظة الصحيحة
 
 function joinLottery(event) {
   // منع إعادة تحميل الصفحة
@@ -20,26 +20,26 @@ function joinLottery(event) {
     sandbox: false,
   });
 
-  // تنفيذ الدفع
+  // تنفيذ عملية الدفع
   Pi.createPayment({
     amount: 1,
     memo: "Join Monthly Pi Lottery",
     metadata: { type: "lottery" },
     to: RECEIVER_WALLET,
   }).then(function(payment) {
-    alert("✅ تم الاشتراك! معرف العملية: " + payment.txid);
-    fetchBalance();
+    alert("✅ تم الاشتراك بنجاح! معرف المعاملة: " + payment.txid);
+    fetchBalance(); // تحديث الرصيد (وهمي)
   }).catch(function(err) {
-    alert("❌ حدث خطأ أثناء الاشتراك:\n" + err.message);
+    alert("❌ فشل الاشتراك:\n" + err.message);
   });
 }
 
 function fetchBalance() {
-  // عرض رصيد وهمي مؤقت (يمكن ربطه لاحقًا بالـ API الفعلي)
+  // مؤقتًا: رصيد وهمي للعرض فقط
   document.getElementById("balance").innerText = "1 Pi";
 }
 
-// قائمة فائزين وهميين مؤقتة
+// قائمة فائزين وهمية
 const winners = [
   "Ahmed E. - 70 Pi",
   "Mona S. - 70 Pi",
@@ -63,6 +63,7 @@ function showWinners() {
   });
 }
 
+// عند تحميل الصفحة
 window.onload = function () {
   fetchBalance();
   showWinners();
