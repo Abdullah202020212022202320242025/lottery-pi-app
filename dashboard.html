@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Lottery Pi Network</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .balance, .history, .rewards {
+      margin-bottom: 25px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .lang {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    select {
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang">
+      <label for="language">🌐 <span data-i18n="choose_lang">اختر اللغة:</span></label>
+      <select id="language" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="ms">Bahasa Melayu</option>
+      </select>
+    </div>
+
+    <h2 data-i18n="dashboard_title">لوحة التحكم</h2>
+
+    <div class="balance">
+      <h3 data-i18n="your_balance">رصيدك الحالي:</h3>
+      <p id="balance">1 Pi</p>
+    </div>
+
+    <div class="history">
+      <h3 data-i18n="transactions">سجل المعاملات</h3>
+      <ul id="transactions">
+        <li>+1 Pi - اشتراك في السحب (2025-07-11)</li>
+        <li>-70 Pi - جائزة (2025-07-01)</li>
+      </ul>
+    </div>
+
+    <div class="rewards">
+      <h3 data-i18n="rewards">جوائزك</h3>
+      <ul>
+        <li data-i18n="golden_ticket">🎫 التذكرة الذهبية: نشطة</li>
+        <li data-i18n="lucky_queue">🍀 طابور الحظ: غير مؤهل</li>
+        <li data-i18n="mystery_box">🎁 صندوق الغموض: سيتم فتحه قريبًا</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      ar: {
+        dashboard_title: "لوحة التحكم",
+        your_balance: "رصيدك الحالي:",
+        transactions: "سجل المعاملات",
+        rewards: "جوائزك",
+        golden_ticket: "🎫 التذكرة الذهبية: نشطة",
+        lucky_queue: "🍀 طابور الحظ: غير مؤهل",
+        mystery_box: "🎁 صندوق الغموض: سيتم فتحه قريبًا",
+        choose_lang: "اختر اللغة:"
+      },
+      en: {
+        dashboard_title: "Dashboard",
+        your_balance: "Your Balance:",
+        transactions: "Transaction History",
+        rewards: "Your Rewards",
+        golden_ticket: "🎫 Golden Ticket: Active",
+        lucky_queue: "🍀 Lucky Queue: Not Eligible",
+        mystery_box: "🎁 Mystery Box: Unlocking Soon",
+        choose_lang: "Choose Language:"
+      },
+      id: {
+        dashboard_title: "Dasbor",
+        your_balance: "Saldo Anda:",
+        transactions: "Riwayat Transaksi",
+        rewards: "Hadiah Anda",
+        golden_ticket: "🎫 Tiket Emas: Aktif",
+        lucky_queue: "🍀 Antrian Keberuntungan: Tidak Memenuhi Syarat",
+        mystery_box: "🎁 Kotak Misteri: Akan Dibuka",
+        choose_lang: "Pilih Bahasa:"
+      },
+      ms: {
+        dashboard_title: "Papan Pemuka",
+        your_balance: "Baki Anda:",
+        transactions: "Sejarah Transaksi",
+        rewards: "Ganjaran Anda",
+        golden_ticket: "🎫 Tiket Emas: Aktif",
+        lucky_queue: "🍀 Barisan Bertuah: Tidak Layak",
+        mystery_box: "🎁 Kotak Misteri: Akan Dibuka",
+        choose_lang: "Pilih Bahasa:"
+      }
+    };
+
+    function changeLanguage(lang) {
+      localStorage.setItem("lang", lang);
+      applyTranslation(lang);
+    }
+
+    function applyTranslation(lang) {
+      const t = translations[lang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+      });
+    }
+
+    window.onload = function () {
+      const savedLang = localStorage.getItem("lang") || navigator.language.slice(0, 2);
+      const lang = ['ar', 'en', 'id', 'ms'].includes(savedLang) ? savedLang : 'en';
+      document.getElementById("language").value = lang;
+      applyTranslation(lang);
+    }
+  </script>
+</body>
+</html>
