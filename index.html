@@ -1,43 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lottery Pi Network</title>
-  
-  <!-- 🎯 تحميل Pi SDK -->
-  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
-
-  <!-- 🎨 تحميل ملف CSS -->
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 </head>
 <body>
-  <div class="app-container">
-    <header>
-      <h1>🎉 Lottery Pi Network 🎉</h1>
-      <p>شارك بـ 1 Pi واربح جوائز ضخمة!</p>
-    </header>
+  <div class="container">
+    <h1>🎉 Lottery Pi Network 🎉</h1>
+    <p>شارك بـ <strong>1 Pi</strong> واربح جوائز ضخمة!</p>
 
-    <main>
-      <section class="balance-section">
-        <h2>الرصيد: <span id="balance">0 Pi</span></h2>
-        <button onclick="joinLottery(event)">الاشتراك في السحب</button>
-      </section>
+    <div class="balance">
+      <p>الرصيد: <span id="balance">1 Pi</span></p>
+    </div>
 
-      <section class="winners-section">
-        <h3>الفائزون الأخيرون 🏆</h3>
-        <ul id="winners-list">
-          <li>... جاري التحميل</li>
-        </ul>
-      </section>
-    </main>
+    <button onclick="joinLottery(event)">الاشتراك في السحب</button>
+
+    <h2>الفائزون الأخيرون 🏆</h2>
+    <ul id="winners-list"></ul>
 
     <footer>
-      <p>&copy; 2025 Lottery Pi Network</p>
+      <p>© 2025 Lottery Pi Network</p>
     </footer>
   </div>
 
-  <!-- ⚙️ تحميل كود JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
