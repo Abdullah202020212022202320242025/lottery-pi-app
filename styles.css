@@ -1,17 +1,88 @@
+/* styles.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #5F259F;
-  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #2b1e4f;
+  color: #fff;
   text-align: center;
-  padding: 20px;
+}
+
+.app-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #fcd535;
+}
+
+header p {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.balance-section {
+  background: #3b2a6b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px #111;
+}
+
+.balance-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 button {
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: #ffcc00;
+  background-color: #fcd535;
+  color: #2b1e4f;
   border: none;
-  border-radius: 10px;
+  padding: 0.8rem 1.5rem;
   font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #e5be2e;
+}
+
+.winners-section {
+  text-align: left;
+  background: #3b2a6b;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #111;
+}
+
+.winners-section h3 {
+  margin-bottom: 0.8rem;
+}
+
+#winners-list {
+  list-style: none;
+  padding: 0;
+}
+
+#winners-list li {
+  margin-bottom: 0.5rem;
+  background: #4a397e;
+  padding: 0.6rem;
+  border-radius: 6px;
+  color: #ffd;
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #aaa;
 }
