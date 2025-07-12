@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lottery Pi Network</title>
+  
+  <!-- 🎯 تحميل Pi SDK -->
+  <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+
+  <!-- 🎨 تحميل ملف CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -16,7 +21,7 @@
     <main>
       <section class="balance-section">
         <h2>الرصيد: <span id="balance">0 Pi</span></h2>
-        <button onclick="joinLottery()">الاشتراك في السحب</button>
+        <button onclick="joinLottery(event)">الاشتراك في السحب</button>
       </section>
 
       <section class="winners-section">
@@ -32,6 +37,7 @@
     </footer>
   </div>
 
+  <!-- ⚙️ تحميل كود JavaScript -->
   <script src="app.js"></script>
 </body>
 </html>
