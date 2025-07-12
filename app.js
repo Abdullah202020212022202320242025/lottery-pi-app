@@ -1,34 +1,53 @@
-const apiKey = 'pekempxh6ermd3el4dwzwau3upaein1ji5a0udim3wsmvfcfblz5eus0wk8gelyi';
+// app.js
 
-window.addEventListener("load", async () => {
-  const loginButton = document.getElementById("login-button");
-  const balanceContainer = document.getElementById("balance-container");
-  const balanceSpan = document.getElementById("balance");
+// إعدادات Pi SDK
+const PI_API_KEY = "usuxvv3cscc3gevmnj9cvay7ue3hi032pnlg0tblims1coroivqyqervgy5mksmt";
+const RECEIVER_WALLET = "GCW4WBMEEPMPFKZL2NOUKDJXQCS2NOJPFDKZXXPHFUTXRQXXGSRSQ3W";
 
-  loginButton.addEventListener("click", async () => {
-    try {
-      Pi.init({ version: 2, sandbox: true, apiKey });
-      const scopes = ['username', 'payments'];
-      const result = await Pi.authenticate(scopes);
-      loginButton.style.display = "none";
-      balanceContainer.style.display = "block";
-      balanceSpan.innerText = "0.25";
-    } catch (error) {
-      alert("Login failed: " + error);
-    }
+function joinLottery() {
+  alert("جارٍ التحقق من الاتصال بـ Pi Network...");
+
+  if (!window.Pi) {
+    alert("يرجى فتح التطبيق من داخل Pi Browser.");
+    return;
+  }
+
+  Pi.init({
+    version: "2.0",
+    sandbox: false,
   });
 
-  document.getElementById("buy-ticket").addEventListener("click", () => {
-    alert("Ticket purchased successfully!");
+  Pi.createPayment({
+    amount: 1,
+    memo: "Join Monthly Pi Lottery",
+    metadata: { type: "lottery" },
+    to: RECEIVER_WALLET,
+  }).then(function(payment) {
+    alert("✅ تم الاشتراك بنجاح! المعاملة: " + payment.txid);
+    fetchBalance(); // تحديث الرصيد
+  }).catch(function(err) {
+    alert("❌ فشل في إتمام العملية:\n" + err.message);
   });
+}
 
-  document.getElementById("view-history").addEventListener("click", () => {
-    alert("Transaction history is currently empty.");
-  });
+function fetchBalance() {
+  // عرض رصيد وهمي مؤقت (لأننا لا نملك اتصال فعلي بـ Pi Wallet هنا)
+  document.getElementById("balance").innerText = "1 Pi";
+}
 
-  // Simulated News Section
-  document.getElementById("news-content").innerHTML = `
-    <p>🎊 The next lottery draw will be held at 12:00 UTC!</p>
-    <p>🌟 Golden Ticket feature now active! Play daily to win extra Pi.</p>
-  `;
-});
+// قائمة فائزين وهميين مؤقتة
+const winners = [
+  "Ahmed E. - 70 Pi",
+  "Mona S. - 70 Pi",
+  "Ziad M. - 70 Pi",
+  "Sara H. - 70 Pi",
+  "Tarek B. - 70 Pi",
+  "Nour F. - 70 Pi",
+  "Yasser K. - 70 Pi",
+  "Laila N. - 70 Pi",
+  "Mostafa A. - 70 Pi",
+  "Heba W. - 70 Pi"
+];
+
+function showWinners() {
+  const list
