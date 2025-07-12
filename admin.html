@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Lottery Pi News</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #f1f1f1;
+      padding: 30px;
+    }
+
+    .admin-container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #8a2be2;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #6a1bbd;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <h2>🔐 لوحة التحكم - الأخبار</h2>
+
+    <div id="login-section">
+      <input type="password" id="admin-password" placeholder="أدخل كلمة المرور">
+      <button onclick="checkPassword()">تسجيل الدخول</button>
+    </div>
+
+    <div id="editor-section" class="hidden">
+      <input type="text" id="news-title" placeholder="عنوان الخبر">
+      <textarea id="news-content" rows="5" placeholder="محتوى الخبر"></textarea>
+      <button onclick="addNews()">نشر الخبر</button>
+      <p class="success" id="success-message"></p>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PASSWORD = "admin123";
+
+    function checkPassword() {
+      const input = document.getElementById("admin-password").value;
+      if (input === ADMIN_PASSWORD) {
+        document.getElementById("login-section").classList.add("hidden");
+        document.getElementById("editor-section").classList.remove("hidden");
+      } else {
+        alert("❌ كلمة المرور غير صحيحة");
+      }
+    }
+
+    function addNews() {
+      const title = document.getElementById("news-title").value.trim();
+      const content = document.getElementById("news-content").value.trim();
+
+      if (!title || !content) {
+        alert("يرجى إدخال عنوان ومحتوى الخبر");
+        return;
+      }
+
+      // حفظ الأخبار محليًا (يمكن تعديل هذا لاحقًا لحفظها في ملف أو قاعدة بيانات)
+      const newsList = JSON.parse(localStorage.getItem("newsList") || "[]");
+      newsList.unshift({ title, content, date: new Date().toLocaleString() });
+      localStorage.setItem("newsList", JSON.stringify(newsList));
+
+      document.getElementById("news-title").value = "";
+      document.getElementById("news-content").value = "";
+      document.getElementById("success-message").textContent = "✅ تم نشر الخبر بنجاح!";
+    }
+  </script>
+</body>
+</html>
